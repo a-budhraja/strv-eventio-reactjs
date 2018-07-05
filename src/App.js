@@ -22,9 +22,9 @@ export default class Login extends Component {
     rememberMe: false
   });
 
-  handleReset = () => {
-    this.loginForm.reset();
-  }
+  // handleReset = () => {
+  //   this.loginForm.reset();
+  // }
   handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form values", this.loginForm.value);
@@ -39,7 +39,10 @@ export default class Login extends Component {
               name="username"
               render={({ handler, touched, hasError }) => (
                 <div>
-                  <input {...handler() } />
+                  <TextField
+                    label="Email"
+                    margin="normal"
+                    {...handler()} />
                   <span>
                     {touched
                       && hasError("required")
@@ -52,7 +55,10 @@ export default class Login extends Component {
               name="password"
               render={({ handler, touched, hasError }) => (
                 <div>
-                  <input {...handler() } />
+                  <TextField
+                    label="Password"
+                    margin="normal"
+                    {...handler()} />
                   <span>
                     {touched
                       && hasError("required")
@@ -65,16 +71,10 @@ export default class Login extends Component {
               name="rememberMe"
               render={({ handler }) => (
                 <div>
-                  <input {...handler("checkbox") } />
+                  <input {...handler("checkbox")} />
                 </div>
               )}
             />
-            <Button
-              type="button"
-              onClick={this.handleReset}
-            >
-              Reset
-              </Button>
             <Button variant="contained" color="primary"
               type="submit"
               disabled={invalid}
